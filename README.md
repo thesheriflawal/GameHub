@@ -1,281 +1,98 @@
-# Connect Four Blockchain Game
+![alt text](<Screenshot 2025-09-03 at 4.20.39 AM.png>)
 
-A fully decentralized, multiplayer Connect Four game built on the Lisk Sepolia network using Solidity smart contracts and React frontend. Players can create rooms, join games, and play Connect Four with real-time blockchain state management.
+````markdown
+# 🎮 Blockchain Paper Games  
 
-## Contract Deployment
+A collection of fully decentralized, multiplayer classic paper games built on the **Lisk Sepolia network** using Solidity smart contracts and a React frontend.  
 
-**Network:** Lisk Sepolia  
-**Contract Address:** `0x924172b50159CC1C6857AF841b93364B5ffA8b24`  
-**Deployer:** `0x5d813b3c40b0b0e012e5156fc41963C56E3bf1DD`  
-**Transaction Hash:** `0x067330995c4f8ccb922218b954048e7d96380b96898c305c024ca2d05b7e6fae`  
-**Deployment Date:** August 30, 2025
+This project reimagines traditional pen-and-paper games as on-chain experiences, with secure game logic, real-time blockchain state updates, and decentralized player interaction.  
 
-[View on Lisk Sepolia Explorer](https://sepolia-blockscout.lisk.com/address/0x924172b50159CC1C6857AF841b93364B5ffA8b24)
+## 📜 Deployed Games  
 
-## Features
+| Game               | Contract Address                              | Explorer Link |
+|--------------------|-----------------------------------------------|---------------|
+| Tic Tac Toe        | `0xbb2a4e46D709A782791c0357d0Ebc7374366cfe4`  | [View](https://sepolia-blockscout.lisk.com/address/0xbb2a4e46D709A782791c0357d0Ebc7374366cfe4) |
+| Connect Four       | `0x0c120edcED45891Efa610477De231E0DF2B66a95`  | [View](https://sepolia-blockscout.lisk.com/address/0x0c120edcED45891Efa610477De231E0DF2B66a95) |
+| Dots and Boxes     | `0xcb63da2c3901e2dbA14B28ce52556Ee5438C6cD6`  | [View](https://sepolia-blockscout.lisk.com/address/0xcb63da2c3901e2dbA14B28ce52556Ee5438C6cD6) |
+| Battleship         | `0x596C16D988E0c54b83Ba746973f1e1Acd0C09B43`  | [View](https://sepolia-blockscout.lisk.com/address/0x596C16D988E0c54b83Ba746973f1e1Acd0C09B43) |
+| Hangman            | `0x4F24794Eea74FA9CFb2A73FCF79080F5DA778BE1`  | [View](https://sepolia-blockscout.lisk.com/address/0x4F24794Eea74FA9CFb2A73FCF79080F5DA778BE1) |
+| SOS Game           | `0x4BaEe19A04dF2c6499372b41b7FeE050A2Afba7A`  | [View](https://sepolia-blockscout.lisk.com/address/0x4BaEe19A04dF2c6499372b41b7FeE050A2Afba7A) |
+| Gomoku (Five in a Row) | `0xac86A3888aec5cDF98c6cCeCD8975226F6A3D001` | [View](https://sepolia-blockscout.lisk.com/address/0xac86A3888aec5cDF98c6cCeCD8975226F6A3D001) |
 
-### Smart Contract Features
+More games coming soon — Nim, Sprouts, and Paper Soccer are in progress.  
 
-- **Room-based Gameplay** - Create and join game rooms with unique room IDs
-- **Session Key Support** - Account abstraction support for gasless transactions
-- **Turn-based Logic** - Enforced turn management with timeout mechanisms
-- **Win Detection** - Automatic win/draw detection with winning cell tracking
-- **Move History** - Complete move tracking for each game
-- **Game State Management** - Comprehensive game status and player management
-- **Security** - ReentrancyGuard and access control for safe gameplay
+## ✨ Features  
 
-### Frontend Features
+### 🔗 Smart Contract Features  
+- Room-based gameplay with unique IDs  
+- Enforced turn-based logic and timeout mechanism  
+- Automatic win/draw detection per game rules  
+- On-chain move history tracking  
+- Session keys for gasless transactions  
+- ReentrancyGuard and access control for security  
 
-- **MetaMask Integration** - Connect wallet to play games
-- **Real-time Updates** - Live game state updates via smart contract events
-- **Responsive UI** - Built with Tailwind CSS for all device sizes
-- **Game Lobbies** - Create or join rooms with shareable room codes
-- **Move Timer** - 5-minute turn timer to prevent game stalling
-- **Visual Feedback** - Animated game pieces and win highlighting
-- **Error Handling** - User-friendly error messages and retry mechanisms
+### 🎨 Frontend Features  
+- MetaMask wallet integration  
+- Real-time game updates via blockchain events  
+- Responsive UI built with Tailwind CSS  
+- Game lobbies with shareable room codes  
+- Animated moves and win highlighting  
+- Error handling with retry mechanisms  
 
-## Game Rules
+## 📖 Game Rules  
 
-1. **Objective**: Connect four pieces vertically, horizontally, or diagonally
-2. **Players**: 2 players per game (Player 1: Red, Player 2: Yellow)
-3. **Turns**: 5-minute time limit per move
-4. **Timeout**: Game ends if player doesn't move within time limit
-5. **Board**: 6 rows × 7 columns grid
+- **Tic Tac Toe:** Get 3 in a row on a 3×3 grid  
+- **Connect Four:** Connect 4 in any direction on a 6×7 grid  
+- **Dots and Boxes:** Connect lines to complete boxes and score points  
+- **Battleship:** Guess opponent’s hidden ships using commit–reveal  
+- **Hangman:** Guess the hidden word before the figure is completed  
+- **SOS:** Place “S” or “O” to form “SOS” chains  
+- **Gomoku:** Get 5 in a row on a larger grid  
 
-## Smart Contract Architecture
+## 🛠 Tech Stack  
 
-### Core Components
+**Frontend:** React, Next.js, Tailwind CSS, Ethers.js, Lucide React  
+**Smart Contracts:** Solidity, OpenZeppelin, Hardhat  
+**Network:** Lisk Sepolia (Ethereum Layer 2)  
+**Wallet:** MetaMask  
 
-- **Game Management**: Create, join, and manage game sessions
-- **Move Validation**: Ensure valid moves and turn enforcement
-- **Win Detection**: Automatic detection of winning conditions
-- **Session Keys**: Support for meta-transactions and gasless gameplay
-- **Event System**: Real-time game updates through blockchain events
-
-### Key Functions
-
-```solidity
-function createGame(string calldata roomId) external returns (uint256)
-function joinGame(string calldata roomId) external
-function makeMove(uint256 gameId, uint8 column) external
-function forfeitGame(uint256 gameId) external
-function getGameState(uint256 gameId) external view returns (...)
-```
-
-### Events
-
-- `GameCreated` - When a new game room is created
-- `PlayerJoined` - When second player joins the room
-- `MoveMade` - When a player makes a move
-- `GameFinished` - When game ends (win/draw/timeout)
-- `GameAbandoned` - When game is abandoned
-
-## Installation & Setup
-
-### Prerequisites
-
-- Node.js (v16+)
-- MetaMask browser extension
-- Git
-
-### Frontend Setup
-
-1. **Clone the repository:**
+## 🚀 Installation & Setup  
 
 ```bash
-git clone https://github.com/your-username/connect-four-blockchain.git
-cd connect-four-blockchain
-```
+# Clone repository
+git clone https://github.com/your-username/blockchain-paper-games.git
+cd blockchain-paper-games
 
-2. **Install dependencies:**
-
-```bash
-npm install
-```
-
-3. **Configure environment:**
-
-```bash
-cp .env.example .env.local
-```
-
-4. **Update contract configuration:**
-
-```javascript
-// In your config file
-const CONTRACT_ADDRESS = "0x924172b50159CC1C6857AF841b93364B5ffA8b24";
-const NETWORK_CONFIG = {
-  chainId: 4202, // Lisk Sepolia
-  chainName: "Lisk Sepolia Testnet",
-  rpcUrls: ["https://rpc.sepolia-api.lisk.com"],
-  blockExplorerUrls: ["https://sepolia-blockscout.lisk.com"],
-};
-```
-
-5. **Start development server:**
-
-```bash
-npm run dev
-```
-
-### MetaMask Setup
-
-1. **Add Lisk Sepolia Network:**
-
-   - Network Name: `Lisk Sepolia Testnet`
-   - RPC URL: `https://rpc.sepolia-api.lisk.com`
-   - Chain ID: `4202`
-   - Currency Symbol: `ETH`
-   - Block Explorer: `https://sepolia-blockscout.lisk.com`
-
-2. **Get test ETH:**
-   - Use Lisk Sepolia faucet to get test tokens
-   - Minimum 0.01 ETH needed for game transactions
-
-## How to Play
-
-### Creating a Game
-
-1. **Connect Wallet** - Connect your MetaMask wallet
-2. **Enter Username** - Choose your display name
-3. **Create Room** - Click "Create Room" to generate a unique room ID
-4. **Share Room ID** - Send the room code to your opponent
-5. **Wait for Player** - Game starts when second player joins
-
-### Joining a Game
-
-1. **Connect Wallet** - Connect your MetaMask wallet
-2. **Enter Username** - Choose your display name
-3. **Enter Room ID** - Input the room code from your friend
-4. **Join Game** - Click "Join Room" to enter the game
-5. **Start Playing** - Game begins immediately
-
-### Gameplay
-
-1. **Make Moves** - Click on columns to drop your pieces
-2. **Turn Timer** - You have 5 minutes per move
-3. **Win Condition** - Connect 4 pieces in any direction
-4. **Game End** - Winner is declared automatically
-
-## Technical Architecture
-
-### Frontend Stack
-
-- **React** - Component-based UI framework
-- **Next.js** - React framework with SSR support
-- **Tailwind CSS** - Utility-first CSS framework
-- **Ethers.js** - Ethereum library for blockchain interaction
-- **Lucide React** - Icon library
-
-### Smart Contract Stack
-
-- **Solidity** - Smart contract programming language
-- **OpenZeppelin** - Security and standard contract libraries
-- **Hardhat** - Development environment and testing framework
-
-### Network Infrastructure
-
-- **Lisk Sepolia** - Layer 2 testnet for Ethereum
-- **MetaMask** - Web3 wallet for transaction signing
-- **Blockchain Events** - Real-time game state synchronization
-
-## Gas Optimization
-
-The smart contract includes several gas optimization features:
-
-- **Efficient Storage** - Packed structs to minimize storage slots
-- **Event-based Updates** - Minimal on-chain storage with rich events
-- **Session Keys** - Gasless transactions through account abstraction
-- **Batch Operations** - Combined operations to reduce transaction count
-
-## Security Features
-
-- **ReentrancyGuard** - Prevents reentrancy attacks
-- **Access Control** - Ownable pattern for admin functions
-- **Input Validation** - Comprehensive input sanitization
-- **Time-based Security** - Move timeouts prevent griefing
-- **State Validation** - Immutable game logic enforcement
-
-## Development & Testing
-
-### Local Development
-
-```bash
 # Install dependencies
 npm install
 
-# Run development server
+# Configure environment
+cp .env.example .env.local
+
+# Start dev server
 npm run dev
+````
 
-# Run tests
-npm test
+## 🔮 Future Enhancements
 
-# Build for production
-npm run build
-```
+* Tournament Mode with leaderboards
+* NFT collectibles for achievements
+* AI opponents for single-player mode
+* Game replays and analysis tools
+* Mobile app support
 
-### Contract Interaction
+## 👨‍💻 Creator
 
-```javascript
-// Example: Create a new game
-const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, signer);
-const tx = await contract.createGame("ROOM123");
-const receipt = await tx.wait();
-```
+Built by **Sherif Lawal**, a blockchain & frontend developer and **student at Web3Bridge**, exploring how classic games can be reimagined on-chain with smart contracts and decentralized logic.
 
-## Troubleshooting
+📌 Connect with me:
 
-### Common Issues
+* **X (Twitter):** [@thesheriflawal](https://x.com/thesheriflawal)
+* **Telegram:** [@thesheriflawal](https://t.me/thesheriflawal)
 
-1. **MetaMask Connection Issues**
-
-   - Ensure you're on Lisk Sepolia network
-   - Check that you have sufficient ETH for gas fees
-   - Try disconnecting and reconnecting wallet
-
-2. **Transaction Failures**
-
-   - Verify contract address is correct
-   - Check gas limit and gas price settings
-   - Ensure game state allows the action
-
-3. **Game State Issues**
-   - Refresh page to sync with blockchain state
-   - Check network connection
-   - Verify you're in the correct game room
-
-### Support
-
-For technical issues or questions:
-
-- Create an issue on GitHub
-- Check the contract on block explorer
-- Verify network connectivity
-
-## Future Enhancements
-
-- **Tournament Mode** - Multi-round tournaments with leaderboards
-- **NFT Integration** - Collectible game pieces and achievements
-- **Mobile App** - React Native mobile application
-- **AI Opponent** - Single-player mode with AI
-- **Replay System** - Game replay and analysis features
-- **Custom Themes** - Personalized game board themes
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Submit a pull request
-
-## License
+## 📜 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
-
-- Built on the Lisk ecosystem
-- Uses OpenZeppelin security standards
-- Inspired by classic Connect Four gameplay
-- Community-driven development approach
+```
+```
